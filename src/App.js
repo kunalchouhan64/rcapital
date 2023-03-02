@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react'
+import { Routes, Route } from 'react-router-dom'
+// import Popoup from './Components/Popoup'
+import Enquiry from './Pages/Enquiry'
+import Home from './Pages/Home'
+import Services from './Pages/Services'
+import ReactGA from 'react-ga';
 
-function App() {
+const App = () => {
+  useEffect(() => {
+    ReactGA.initialize('G-VD4134VKR0');
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        {/* <Route path='/pop' element={<Popoup />} /> */}
+        <Route path='/enquiry' element={<Enquiry />} />
+        <Route path='/services' element={<Services />} />
+
+      </Routes>
+    </>
+  )
 }
 
-export default App;
+export default App
